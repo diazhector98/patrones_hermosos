@@ -10,7 +10,6 @@ class TextInput extends Component {
     }
 
     handleChange = (event) => {
-        let c = event.target.value;
         this.setState({text: event.target.value})
     }
 
