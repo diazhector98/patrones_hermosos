@@ -10,8 +10,7 @@ class Menu extends Component {
 
         let contenido = null;
         contenido = this.props.opciones.map((opcion, index) => {
-            console.log(index);
-            return <button key={index} onClick={this.props.clickHandler}>{opcion.titulo}</button>
+            return <button key={index} onClick={() => {this.props.clickHandler(index)}}>{opcion.titulo}</button>
         })
 
         return (

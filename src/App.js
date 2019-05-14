@@ -4,8 +4,8 @@ import { tsConstructorType } from '@babel/types';
 import {InscripcionSede,
   PostulacionInstructora,
   RegistroSede,
-  AutorizarInstructora,
   AutorizarSede,
+  AutorizarInstructora,
   Autenticacion,
   Menu
 } from '../src/Paginas/Paginas';
@@ -40,8 +40,13 @@ class App extends Component {
     console.log('Autorizacion Instructora');
   }
 
-  handleOpcion = (event) => {
-    console.log(event.target.getAttribute("key"));
+  handleOpcion = (index) => {
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        pagina: index
+      }
+    })
   }
 
   handlerAutenticacion = () => {
@@ -80,11 +85,27 @@ class App extends Component {
       })
     });
 
+    let contenidoPagina = null;
+
+    if(this.state.pagina === 0){
+      contenidoPagina = <InscripcionSede />
+    } else if (this.state.pagina === 1){
+      contenidoPagina = <PostulacionInstructora />
+    } else if (this.state.pagina === 2){
+      contenidoPagina = <RegistroSede />
+    } else if (this.state.pagina === 3){
+      contenidoPagina = <AutorizarSede />
+    } else if (this.state.pagina === 4){
+      contenidoPagina = <AutorizarInstructora />
+    } else {
+      contenidoPagina = null;
+    }
+
     if(this.state.loggedIn){
       contenido = 
       <div>
         <Menu opciones={opcionesMenu} clickHandler={this.handleOpcion}/>
-
+        {contenidoPagina}
       </div>
     } else {
       contenido = <Autenticacion onAuth={this.handlerAutenticacion}/>

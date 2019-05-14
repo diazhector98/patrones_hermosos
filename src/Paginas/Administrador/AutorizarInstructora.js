@@ -4,7 +4,7 @@ class AutorizarInstructora extends Component {
     render() {
         return (
             <div>
-                <h1>Autorizar Sede</h1>
+                <h1>Autorizar Instructora</h1>
                 <form>
                     <p>Nombre</p><input></input>
                     <p>Apellidos</p><input></input>
