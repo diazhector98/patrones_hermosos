@@ -26,6 +26,8 @@ class PostulacionInstructora extends Component {
         firebase.database().ref('instructoras/' + id).set(
             this.state
           );
+          alert('Postulación enviada!');
+
     }
     
     render() {

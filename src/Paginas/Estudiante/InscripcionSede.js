@@ -27,6 +27,7 @@ class InscripcionSede extends Component {
         firebase.database().ref('estudiantes/' + id).set(
             this.state
           );
+        alert('Registro enviado!');
     }
 
     render() {
