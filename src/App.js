@@ -1,6 +1,11 @@
 import React, {Component} from 'react';
 import { tsConstructorType } from '@babel/types';
 
+import './App.css';
+
+import 'antd/dist/antd.css';
+
+
 import {InscripcionSede,
   PostulacionInstructora,
   RegistroSede,
@@ -116,7 +121,7 @@ class App extends Component {
     }
 
     return (
-      <div>
+      <div className="App">
         <h1>Patrones hermosos</h1>
         {contenido}
       </div>

@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 
+import './Autenticacion.css';
+
 import TextInput from '../../Utilities/TextInput/TextInput';
 
 
@@ -63,7 +65,7 @@ class Autenticacion extends Component {
                     <TextInput id='email' title='Correo Electrónico' onChange={this.handleChange}/>
                     <TextInput id='password' title='Contraseña' onChange={this.handleChange}/>
                 </form>
-                <button onClick={this.handleLogin}>Iniciar Sesion</button>
+                <button className="boton" onClick={this.handleLogin}>Iniciar Sesion</button>
             </div>
         } else if (this.state.estado === 'register'){
             contenido = 
@@ -73,14 +75,14 @@ class Autenticacion extends Component {
                     <TextInput id='email' title='Correo Electrónico' onChange={this.handleChange}/>
                     <TextInput id='password' title='Contraseña' onChange={this.handleChange}/>
                 </form>
-                <button onClick={this.handleRegistro}>Registrarte</button>
+                <button className="boton" onClick={this.handleRegistro}>Registrarte</button>
             </div>
         }
 
         return (
-            <div>
+            <div className="Autenticacion">
                 <h2>{this.state.estado === 'login' ? 'Inicia Sesión' : 'Registrate'}</h2>
-                <button onClick={this.toggleEstado}>{this.state.estado === 'login' ? 'No tienes cuenta? Registrate' : 'Ya tienes cuenta? Inicia sesion'}</button>
+                <button className="boton" onClick={this.toggleEstado}>{this.state.estado === 'login' ? 'No tienes cuenta? Registrate' : 'Ya tienes cuenta? Inicia sesion'}</button>
                 {contenido}
             </div>
         )

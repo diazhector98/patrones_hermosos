@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 
+import './TextInput.css';
+
 class TextInput extends Component {
     
     constructor(props) {
@@ -17,7 +19,7 @@ class TextInput extends Component {
     render () {
         return (
             <div>
-                <h4>{this.props.title} <input onChange={this.handleChange} value={this.state.text}></input> </h4>
+                <h4 className="Text">{this.props.title} <input className="Input" onChange={this.handleChange} value={this.state.text}></input> </h4>
                 
             </div>
         )
