@@ -1,23 +1,49 @@
 import React, {Component} from 'react';
 import TextInput from '../../Utilities/TextInput/TextInput';
 import RadioGroup from '../../Utilities/RadioGroup/RadioGroup';
+import firebase from 'firebase/app';
 
 class InscripcionSede extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            aprobada: false
+        }
+    }
+
+    handleChange = (key, input) => {
+        this.setState(prevState => {
+            return {
+                ...prevState,
+                [key]: input
+            }
+        });
+    }
+
+    handleSubmit = () => {
+        let database = firebase.database();
+        let id = firebase.auth().currentUser.uid;
+        firebase.database().ref('estudiantes/' + id).set(
+            this.state
+          );
+    }
+
     render() {
         return (
             <div>
                 <h1>Inscripción</h1>
                 <form>
-                    <TextInput title='Nombre'/>
-                    <TextInput title='Apellidos'/>
-                    <TextInput title='Correo Electronico'/>
-                    <TextInput title='Teléfono movil'/>
-                    <TextInput title='Direccion'/>
-                    <TextInput title='Ciudad'/>
-                    <TextInput title='Estado'/>
-                    <TextInput title='Codigo Postal'/>
+                    <TextInput id='nombre' title='Nombre' onChange={this.handleChange}/>
+                    <TextInput id='apellidos' title='Apellidos' onChange={this.handleChange}/>
+                    <TextInput id='email' title='Correo Electronico' onChange={this.handleChange}/>
+                    <TextInput id='telefono' title='Teléfono movil' onChange={this.handleChange}/>
+                    <TextInput id='direccion' title='Direccion' onChange={this.handleChange}/>
+                    <TextInput id='ciudad' title='Ciudad' onChange={this.handleChange}/>
+                    <TextInput id='estado' title='Estado' onChange={this.handleChange}/>
+                    <TextInput id='codigoPostal' title='Codigo Postal' onChange={this.handleChange}/>
                     <RadioGroup title='Sexo' options={['Hombre', 'Mujer', 'Otro']} />
-                    <TextInput title='Nombre de escuela donde realizas tus estudios' />
+                    <TextInput id='escuela' title='Nombre de escuela donde realizas tus estudios' onChange={this.handleChange}/>
 
                     <RadioGroup title='Grado Escolar' options={
                         [
@@ -30,10 +56,10 @@ class InscripcionSede extends Component {
                     '3er año de preparatoria'
                 ]}/>
 
-                    <TextInput title='Promedio en escala 1 a 100' />
-                    <button>Completar Inscripcion</button>
-
+                    <TextInput id='promedio' title='Promedio en escala 1 a 100' onChange={this.handleChange} />
                 </form>
+                <button onClick={this.handleSubmit}>Completar Inscripcion</button>
+
             </div>
         )
     }

@@ -49,7 +49,7 @@ class App extends Component {
     })
   }
 
-  handlerAutenticacion = () => {
+  handleSuccessAuth = () => {
     this.setState(prevState => {
       return {
         ...prevState,
@@ -57,6 +57,10 @@ class App extends Component {
         opcionSeleccionada: null
       }
     })
+  }
+
+  handleFailAuth = () => {
+    alert("Error ingresando. Checa tus credenciales");
   }
 
   render () {
@@ -108,7 +112,7 @@ class App extends Component {
         {contenidoPagina}
       </div>
     } else {
-      contenido = <Autenticacion onAuth={this.handlerAutenticacion}/>
+      contenido = <Autenticacion onSuccessfullAuth={this.handleSuccessAuth} onFailedAuth={this.handleFailAuth}/>
     }
 
     return (

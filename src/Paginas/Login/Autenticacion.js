@@ -1,15 +1,23 @@
 import React, {Component} from 'react';
+import firebase from 'firebase/app';
+import 'firebase/auth';
+
+import TextInput from '../../Utilities/TextInput/TextInput';
+
 
 class Autenticacion extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            estado: 'register'
+            estado: 'register',
+            nombre: '',
+            email: '',
+            password: ''
         }
     }
 
     toggleEstado = () => {
-        this.setState(prevState => {
+        this.setState((prevState) => {
             return {
                 ...prevState,
                 estado: prevState.estado === 'register' ? 'login' : 'register'
@@ -17,12 +25,33 @@ class Autenticacion extends Component {
         });
     }
 
+    handleChange = (key, input) => {
+        this.setState(prevState => {
+            return {
+                ...prevState,
+                [key]: input
+            }
+        });
+    }
+
     handleLogin = () => {
-        this.props.onAuth();
+        const auth = firebase.auth();
+        console.log(this.state.email + this.state.password);
+        auth.signInWithEmailAndPassword(this.state.email, this.state.password).then((response) => {
+            this.props.onSuccessfullAuth();
+        }).catch((error) => {
+            this.props.onFailedAuth();
+        });
     }
 
     handleRegistro = () => {
-        this.props.onAuth();
+        const provider = firebase.auth.EmailAuthProvider();
+        const auth = firebase.auth();
+        auth.createUserWithEmailAndPassword(this.state.email, this.state.password).then((r) => {
+            this.props.onSuccessfullAuth();
+        }).catch(error => {
+            this.props.onFailedAuth();
+        });
     }
 
     render() {
@@ -31,8 +60,8 @@ class Autenticacion extends Component {
             contenido = 
             <div>
                 <form>
-                    <p>Correo Electrónico</p> <input></input>
-                    <p>Contraseña</p> <input></input>
+                    <TextInput id='email' title='Correo Electrónico' onChange={this.handleChange}/>
+                    <TextInput id='password' title='Contraseña' onChange={this.handleChange}/>
                 </form>
                 <button onClick={this.handleLogin}>Iniciar Sesion</button>
             </div>
@@ -40,9 +69,9 @@ class Autenticacion extends Component {
             contenido = 
             <div>
                 <form>
-                    <p>Nombre</p> <input></input>
-                    <p>Correo Electrónico</p> <input></input>
-                    <p>Contraseña</p> <input></input>
+                    <TextInput id='nombre' title='Nombre' onChange={this.handleChange}/>
+                    <TextInput id='email' title='Correo Electrónico' onChange={this.handleChange}/>
+                    <TextInput id='password' title='Contraseña' onChange={this.handleChange}/>
                 </form>
                 <button onClick={this.handleRegistro}>Registrarte</button>
             </div>

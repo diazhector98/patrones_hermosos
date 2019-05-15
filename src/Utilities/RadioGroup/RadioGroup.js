@@ -9,12 +9,9 @@ class RadioGroup extends Component {
         return (
             <div>
                 <h4>{this.props.title}</h4>
-                <form>
-
                     {this.props.options.map(option => {
-                        return <div><label><input type="radio" name={this.props.title}/>{option}</label></div>
+                        return <div><label><input key={this.props.title} type="radio" name={this.props.title}/>{option}</label></div>
                     })}
-                </form>
             </div>
         )
     }

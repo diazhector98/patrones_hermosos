@@ -11,6 +11,7 @@ class TextInput extends Component {
 
     handleChange = (event) => {
         this.setState({text: event.target.value})
+        this.props.onChange(this.props.id, event.target.value);
     }
 
     render () {
