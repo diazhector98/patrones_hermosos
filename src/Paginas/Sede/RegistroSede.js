@@ -27,6 +27,8 @@ class RegistroSede extends Component {
         firebase.database().ref('sedes/' + id).set(
             this.state
           );
+          alert('Aplicación de sede enviada!');
+
     }
 
     render() {
