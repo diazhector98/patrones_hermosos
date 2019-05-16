@@ -33,7 +33,7 @@ class InstructoraObject extends Component {
                 <h2>{'Nombre: ' + this.props.instructora.nombre}</h2>
                 <p>{'Motivacion: ' + this.props.instructora.motivacion}</p>  
                 <p>{'Ciudad: ' + this.props.instructora.ciudad}</p> 
-                <button onClick={this.handleAutorizar}> Autorizar </button>
+                {this.props.autorizada === true ? null : <button onClick={this.handleAutorizar}> Autorizar </button>}
             </div>
         )
     }

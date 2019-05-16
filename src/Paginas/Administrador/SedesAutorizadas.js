@@ -4,7 +4,7 @@ import SedeObject from './SedeObject';
 
 import firebase from 'firebase/app';
 
-class AutorizarSede extends Component {
+class SedesAutorizadas extends Component {
     constructor(props) {
         super(props);
 
@@ -51,7 +51,7 @@ class AutorizarSede extends Component {
     render() {
         return (
             <div>
-                <h1>Autorizar Sede</h1>
+                <h1>Sedes Autorizadas</h1>
                 {this.state.sedes.map(sede => {
                     return <SedeObject key={sede.telefono} sede={sede} approvedHandle={this.handleAprobacion} autorizada={true}/>
                 })}
@@ -61,4 +61,4 @@ class AutorizarSede extends Component {
 }
 
 
-export default AutorizarSede;
+export default SedesAutorizadas;

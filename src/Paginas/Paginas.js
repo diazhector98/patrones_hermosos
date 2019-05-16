@@ -5,6 +5,7 @@ import RegistroSede from './Sede/RegistroSede';
 import AutorizarInstructora from './Administrador/AutorizarInstructora';
 import AutorizarSede from './Administrador/AutorizarSede';
 import SedesAutorizadas from './Administrador/SedesAutorizadas';
+import InstructorasAutorizadas from './Administrador/InstructorasAutorizadas';
 import Autenticacion from './Login/Autenticacion';
 import Menu from './Menu';
 
@@ -17,5 +18,6 @@ export {
     AutorizarSede,
     Autenticacion,
     SedesAutorizadas,
+    InstructorasAutorizadas,
     Menu
 }

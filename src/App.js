@@ -15,6 +15,7 @@ import {InscripcionSede,
   AutorizarInstructora,
   Autenticacion,
   SedesAutorizadas,
+  InstructorasAutorizadas,
   Menu
 } from '../src/Paginas/Paginas';
 
@@ -61,7 +62,7 @@ class App extends Component {
   }
 
   handleOpcion = (index) => {
-    if(index == 6){
+    if(index == 7){
       this.handleLogOut();
     } else {
       this.setState(prevState => {
@@ -100,7 +101,8 @@ class App extends Component {
       'Regístrate como sede', 
       'Autorizar Sede', 
       'Autorizar Instructora',
-      'Sedes Autorizadas', 
+      'Sedes Autorizadas',
+      'Instructoras Autorizadas' ,
       'Salir'];
     
       let handlersMenu = [
@@ -135,6 +137,8 @@ class App extends Component {
       contenidoPagina = <AutorizarInstructora />
     } else if (this.state.pagina === 5){
       contenidoPagina = <SedesAutorizadas />
+    } else if(this.state.pagina === 6){
+      contenidoPagina = <InstructorasAutorizadas />
     } else {
       contenidoPagina = null;
     }
