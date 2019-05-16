@@ -32,8 +32,7 @@ class SedeObject extends Component {
                 <h3>{'Campus: '  + this.props.sede.campus}</h3>
                 <p>{'Motivacion: ' + this.props.sede.motivacion}</p>  
                 <p>{'Ciudad: ' + this.props.sede.ciudad}</p> 
-                <button onClick={this.handleAutorizar}> Autorizar </button>
-                <button> Rechazar </button>
+                {this.props.autorizada === true ? null : <button onClick={this.handleAutorizar}> Autorizar </button>}
             </div>
         )
     }
