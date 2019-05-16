@@ -3,6 +3,8 @@ import { tsConstructorType } from '@babel/types';
 
 import './App.css';
 
+import firebase from 'firebase/app';
+
 import 'antd/dist/antd.css';
 
 
@@ -45,13 +47,31 @@ class App extends Component {
     console.log('Autorizacion Instructora');
   }
 
+  handleLogOut = () => {
+    console.log("Gonna log out");
+    firebase.auth().signOut().then(() => {
+      this.setState(() => {return{
+        loggedIn: false, pagina: -1} 
+      });
+    }).catch(function(error) {
+      console.log(error);
+      console.log("Error en signout")
+    });
+  }
+
   handleOpcion = (index) => {
-    this.setState(prevState => {
-      return {
-        ...prevState,
-        pagina: index
-      }
-    })
+    if(index == 5){
+      this.handleLogOut();
+    } else {
+      this.setState(prevState => {
+        return {
+          ...prevState,
+          pagina: index
+        }
+      })
+
+    }
+
   }
 
   handleSuccessAuth = () => {
@@ -68,6 +88,8 @@ class App extends Component {
     alert("Error ingresando. Checa tus credenciales");
   }
 
+
+
   render () {
     let contenido = null;
     
@@ -76,14 +98,17 @@ class App extends Component {
       'Postúlate como instructora', 
       'Regístrate como sede', 
       'Autorizar Sede', 
-      'Autorizar Instructora'];
+      'Autorizar Instructora', 
+      'Salir'];
     
       let handlersMenu = [
         this.handleInscripcionEstudiante, 
         this.handlePostulacionInstructora, 
         this.handleRegistroSede, 
         this.handleAutorizarSede, 
-        this.handleAutorizacionInstructora];
+        this.handleAutorizacionInstructora,
+        this.handleLogOut
+      ];
 
     let opcionesMenu = []
     

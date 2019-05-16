@@ -17,6 +17,7 @@ class SedeObject extends Component {
         updates['/sedes/' + postData.id] = postData;
         firebase.database().ref().update(updates);
         this.props.approvedHandle();
+        alert('Sede autorizada!');
     }
 
     handleRechazar = () => {

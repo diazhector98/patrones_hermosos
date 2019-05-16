@@ -17,6 +17,7 @@ class InstructoraObject extends Component {
         updates['/instructoras/' + postData.id] = postData;
         firebase.database().ref().update(updates);
         this.props.approvedHandle();
+        alert('Instructora autorizada!');
     }
 
     handleRechazar = () => {
@@ -33,7 +34,6 @@ class InstructoraObject extends Component {
                 <p>{'Motivacion: ' + this.props.instructora.motivacion}</p>  
                 <p>{'Ciudad: ' + this.props.instructora.ciudad}</p> 
                 <button onClick={this.handleAutorizar}> Autorizar </button>
-                <button> Rechazar </button>
             </div>
         )
     }
